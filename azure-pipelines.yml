@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10'
+
+- script: make setup
+  displayName: 'Create virtual environment'
+
+- script: |
+    source ~/.udacity-devops/bin/activate
+    make all
+  displayName: 'Activate Env and Run Makefile'
